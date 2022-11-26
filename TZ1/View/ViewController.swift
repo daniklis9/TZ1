@@ -42,9 +42,6 @@ extension ViewController: ViewControllerProtocol {
         smallWeatherCityInformationLabel.text = smallInformation
         descriptionWeatherLabel.text = description
     }
-    
-    //ggreger 
-    // geger
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
