@@ -14,12 +14,10 @@ class TodayWeatherCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func setupCell(day: String, temperature: String){
         dayLabel.text = day
         temperatureLabel.text = temperature
     }
-
 }

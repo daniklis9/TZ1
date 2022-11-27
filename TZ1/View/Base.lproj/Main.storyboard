@@ -45,7 +45,7 @@
                                         <color key="textColor" white="1" alpha="0.60326986754966883" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNK-Yg-veH" userLabel="InforamtionView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNK-Yg-veH" userLabel="SmallInforamtionView">
                                         <rect key="frame" x="24" y="179" width="342" height="180"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bc-aD-MCW">
@@ -80,7 +80,7 @@
                                                 </connections>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.23529411764705882" green="0.30588235294117649" blue="0.396078431372549" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="ENm-tH-f50" firstAttribute="top" secondItem="3bc-aD-MCW" secondAttribute="bottom" constant="8" symbolic="YES" id="50d-Qg-XoU"/>
                                             <constraint firstAttribute="bottom" secondItem="GPZ-Ik-hLd" secondAttribute="bottom" id="CN0-VI-2wf"/>
@@ -95,10 +95,22 @@
                                             <constraint firstAttribute="trailing" secondItem="ENm-tH-f50" secondAttribute="trailing" constant="14" id="umk-gE-NZQ"/>
                                         </constraints>
                                     </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="VO6-Ix-zbG">
+                                        <rect key="frame" x="24" y="368" width="342" height="377"/>
+                                        <color key="backgroundColor" red="0.23529411764705882" green="0.30588235294117649" blue="0.396078431372549" alpha="0.60412355132450335" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="Nfk-kr-j5u"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="pX2-5b-kxU"/>
+                                        </connections>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="VO6-Ix-zbG" secondAttribute="trailing" constant="24" id="3Cv-KH-JoT"/>
                                     <constraint firstItem="nLK-8W-ISk" firstAttribute="leading" secondItem="jNn-85-IeK" secondAttribute="leading" constant="24" id="3Dt-xl-01X"/>
+                                    <constraint firstItem="VO6-Ix-zbG" firstAttribute="top" secondItem="BNK-Yg-veH" secondAttribute="bottom" constant="9" id="3Gd-ex-WJq"/>
+                                    <constraint firstItem="VO6-Ix-zbG" firstAttribute="leading" secondItem="jNn-85-IeK" secondAttribute="leading" constant="24" id="BGg-ou-e3Z"/>
+                                    <constraint firstAttribute="bottom" secondItem="VO6-Ix-zbG" secondAttribute="bottom" constant="18" id="Cxg-95-56h"/>
                                     <constraint firstItem="BNK-Yg-veH" firstAttribute="leading" secondItem="jNn-85-IeK" secondAttribute="leading" constant="24" id="OyW-3g-rWa"/>
                                     <constraint firstItem="HKC-wA-H9h" firstAttribute="top" secondItem="jNn-85-IeK" secondAttribute="top" constant="60" id="Rof-FT-3qa"/>
                                     <constraint firstItem="HKC-wA-H9h" firstAttribute="leading" secondItem="jNn-85-IeK" secondAttribute="leading" constant="24" id="UiN-AY-lUS"/>
@@ -127,7 +139,9 @@
                         <outlet property="cityLabel" destination="HKC-wA-H9h" id="luH-rV-6QD"/>
                         <outlet property="collectionView" destination="GPZ-Ik-hLd" id="jrR-57-lKu"/>
                         <outlet property="descriptionWeatherLabel" destination="3bc-aD-MCW" id="RKh-bQ-xd9"/>
+                        <outlet property="smallInformationView" destination="BNK-Yg-veH" id="XYl-8h-psl"/>
                         <outlet property="smallWeatherCityInformationLabel" destination="nLK-8W-ISk" id="OMy-Tw-Pdd"/>
+                        <outlet property="tableView" destination="VO6-Ix-zbG" id="aBW-H7-nYd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
