@@ -29,8 +29,37 @@ class ImageGalleryScreenPresenter: ImageGalleryScreenPresenterProtocol {
     private let secondUrl = URL(string: "https://vkus-sovet.ru/api/getSubMenu.php")!
     public var categoryImages: [UIImage] = []
     public var secondCategoryImages: [UIImage] = []
-    
     weak private var view: ImageGalleryScreenViewProtocol?
+    
+    private func getImages(menuList: [MenuList]?, secondMenuList: [SecondMenuList]?) {
+        if let menuList = menuList {
+            getImagesFirstRequest(menuList: menuList)
+        } else if let secondMenuList = secondMenuList {
+            getImagesForCategories(menuList: secondMenuList)
+        }
+    }
+    
+    private func getImagesFirstRequest(menuList: [MenuList]) {
+        for menu in menuList {
+            self.loadImage(from: "https://vkus-sovet.ru\(menu.image)") { image in
+                guard let image = image else { return }
+                self.categoryImages.append(image)
+                self.view?.reloadData()
+            }
+        }
+    }
+    
+    private func getImagesForCategories(menuList: [SecondMenuList]) {
+        for i in menuList {
+            self.loadImage(from: "https://vkus-sovet.ru\(i.image ?? "" )") { image in
+                guard let image = image else { return }
+                self.secondCategoryImages.append(image)
+                if self.secondCategoryImages.count == menuList.count {
+                    self.view?.reloadDataAtSecondCollectionView()
+                }
+            }
+        }
+    }
     
     func attachView(view: ImageGalleryScreenViewProtocol) {
         self.view = view
@@ -61,7 +90,6 @@ class ImageGalleryScreenPresenter: ImageGalleryScreenPresenterProtocol {
         guard let model = model else { return }
         self.categoryName = model.menuList[row].name
         self.secondCategoryImages.removeAll()
-//        view?.reloadDataAtSecondCollectionView()
     }
     
     func getCategoryName() -> String {
@@ -73,7 +101,7 @@ class ImageGalleryScreenPresenter: ImageGalleryScreenPresenterProtocol {
             completion(nil)
             return
         }
-
+        
         URLSession.shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
                 if let data = data, let image = UIImage(data: data) {
@@ -94,13 +122,7 @@ class ImageGalleryScreenPresenter: ImageGalleryScreenPresenterProtocol {
                 do {
                     self.model = try JSONDecoder().decode(MenuResponse.self, from: data)
                     guard let menuList = self.model?.menuList else { return }
-                    for i in menuList {
-                        self.loadImage(from: "https://vkus-sovet.ru\(i.image)") { image in
-                            guard let image = image else { return }
-                            self.categoryImages.append(image)
-                            self.view?.reloadData()
-                        }
-                    }
+                    self.getImages(menuList: menuList, secondMenuList: nil)
                     DispatchQueue.main.async {
                         self.view?.reloadData()
                     }
@@ -129,7 +151,7 @@ class ImageGalleryScreenPresenter: ImageGalleryScreenPresenterProtocol {
         request.httpMethod = "POST"
         request.httpBody = postData
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-//        self.categoryImages.removeAll()
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print(error)
@@ -137,19 +159,7 @@ class ImageGalleryScreenPresenter: ImageGalleryScreenPresenterProtocol {
                 do {
                     self.secondModel = try JSONDecoder().decode(SecondMenuResponse.self, from: data)
                     guard let menuList = self.secondModel?.menuList else { return }
-                    for i in menuList {
-                        self.loadImage(from: "https://vkus-sovet.ru\(i.image ?? "")") { image in
-                            guard let image = image else { return }
-                            self.secondCategoryImages.append(image)
-                            if self.secondCategoryImages.count == menuList.count {
-                                self.view?.reloadDataAtSecondCollectionView()
-                            }
-//                            self.view?.reloadDataAtSecondCollectionView()
-                        }
-                    }
-//                    DispatchQueue.main.async {
-//                        self.view?.reloadDataAtSecondCollectionView()
-//                    }
+                    self.getImages(menuList: nil, secondMenuList: menuList)
                 } catch {
                     print("Ошибка декодирования: \(error)")
                 }
@@ -157,6 +167,4 @@ class ImageGalleryScreenPresenter: ImageGalleryScreenPresenterProtocol {
         }
         task.resume()
     }
-    
-    
 }
