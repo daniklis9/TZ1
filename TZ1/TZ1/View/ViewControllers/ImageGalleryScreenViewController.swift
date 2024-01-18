@@ -17,8 +17,6 @@ class ImageGalleryScreenViewController: UIViewController, ImageGalleryScreenView
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet weak var secondCollectionView: UICollectionView!
     
-    private let mainTile = "VKUSSOVET"
-    private let fontName = "Impact"
     private let categoryCollectionViewCellID = "CategoryCollectionViewCell"
     private let secondCategoryCollectionViewCellID = "SecondCategoryCollectionViewCell"
     private let headerID = "HeaderID"
@@ -29,9 +27,7 @@ class ImageGalleryScreenViewController: UIViewController, ImageGalleryScreenView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupRightTopBar()
         setupCollectionViews()
-        setupTopBar()
         presenter.attachView(view: self)
         presenter.makeFirstRequest()
     }
@@ -58,26 +54,5 @@ class ImageGalleryScreenViewController: UIViewController, ImageGalleryScreenView
         secondCollectionView.dataSource = collectionView2DelegateDataSource
         secondCollectionView.register(UINib.init(nibName: secondCategoryCollectionViewCellID, bundle: Bundle.main), forCellWithReuseIdentifier: secondCategoryCollectionViewCellID)
         secondCollectionView.register(HeaderClass.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.headerID)
-    }
-    
-    private func setupTopBar() {
-        let button = UIButton(type: .system)
-        button.setTitle(mainTile, for: .normal)
-        button.setImage(UIImage(systemName: "star"), for: .normal)
-        button.titleLabel?.font = UIFont(name: fontName, size: 27)
-        button.setTitleColor(.white, for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2.5, right: 0)
-        let barButtonItem = UIBarButtonItem(customView: button)
-        navigationItem.leftBarButtonItem = barButtonItem
-    }
-    
-    private func setupRightTopBar() {
-        let systemImage = UIImage(systemName: "phone.circle")
-        let button = UIButton(type: .system)
-        button.setImage(systemImage, for: .normal)
-        button.tintColor = .white
-        let barButtonItem = UIBarButtonItem(customView: button)
-        navigationItem.rightBarButtonItem = barButtonItem
     }
 }

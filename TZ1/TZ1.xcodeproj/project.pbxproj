@@ -23,6 +23,7 @@
 		09EC25EB2B58657F00F3CC79 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EC25EA2B58657F00F3CC79 /* Header.swift */; };
 		09EC25ED2B58660F00F3CC79 /* CollectionView1DelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EC25EC2B58660F00F3CC79 /* CollectionView1DelegateDataSource.swift */; };
 		09EC25EF2B58663B00F3CC79 /* CollectionView2DelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EC25EE2B58663B00F3CC79 /* CollectionView2DelegateDataSource.swift */; };
+		09EC25F72B5930B000F3CC79 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EC25F62B5930B000F3CC79 /* TabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		09EC25EA2B58657F00F3CC79 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		09EC25EC2B58660F00F3CC79 /* CollectionView1DelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView1DelegateDataSource.swift; sourceTree = "<group>"; };
 		09EC25EE2B58663B00F3CC79 /* CollectionView2DelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView2DelegateDataSource.swift; sourceTree = "<group>"; };
+		09EC25F62B5930B000F3CC79 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				09C300A82B54738700161762 /* ImageGalleryScreenViewController.swift */,
+				09EC25F62B5930B000F3CC79 /* TabBarViewController.swift */,
 				09EC25E82B572CF500F3CC79 /* Main.storyboard */,
 			);
 			path = ViewControllers;
@@ -246,6 +249,7 @@
 				09EC25EF2B58663B00F3CC79 /* CollectionView2DelegateDataSource.swift in Sources */,
 				099711A02B55A6D200796E47 /* Model.swift in Sources */,
 				09EC25EB2B58657F00F3CC79 /* Header.swift in Sources */,
+				09EC25F72B5930B000F3CC79 /* TabBarViewController.swift in Sources */,
 				09C300A92B54738700161762 /* ImageGalleryScreenViewController.swift in Sources */,
 				099711AB2B569AF000796E47 /* SecondCategoryCollectionViewCell.swift in Sources */,
 				09C300BE2B547B1200161762 /* ImageGalleryScreenPresenter.swift in Sources */,

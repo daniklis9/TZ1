@@ -11,6 +11,7 @@ import UIKit
 class CollectionView2DelegateDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     private let presenter: ImageGalleryScreenPresenter
     private let secondCategoryCollectionViewCellID = "SecondCategoryCollectionViewCell"
+    private let imageSpicy = UIImage(named: "perec")
     
     init(presenter: ImageGalleryScreenPresenter) {
         self.presenter = presenter
@@ -23,13 +24,12 @@ class CollectionView2DelegateDataSource: NSObject, UICollectionViewDelegate, UIC
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCategoryCollectionViewCellID, for: indexPath) as! SecondCategoryCollectionViewCell
-        cell.backgroundColor = .green
         guard let menuList = presenter.secondModel?.menuList else { return SecondCategoryCollectionViewCell()}
+        
         if  presenter.secondCategoryImages.count != 0 {
-            cell.imageView.image = presenter.secondCategoryImages[indexPath.row]
-            cell.titleName.text = menuList[indexPath.row].name ?? ""
-            cell.subtitleName.text = menuList[indexPath.row].content ?? ""
-            cell.priceAndGramsLabel.text = (menuList[indexPath.row].price ?? "") + "р. / " + (menuList[indexPath.row].weight ?? "")
+            cell.setupImage(image: presenter.secondCategoryImages[indexPath.row])
+            cell.setupLabels(titleName: menuList[indexPath.row].name ?? "", subTitleName: menuList[indexPath.row].content ?? "", priceAndGrams: (menuList[indexPath.row].price ?? "") + "р. / " + (menuList[indexPath.row].weight ?? ""))
+            menuList[indexPath.row].spicy == "Y" ?  cell.setupSpicyImage(image: imageSpicy!) : cell.setupSpicyImage(image: nil)
         }
         return cell
         
